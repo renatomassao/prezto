@@ -33,6 +33,12 @@ version is 4.3.17.
 
   5. Open a new Zsh terminal window or tab.
 
+### My changes
+
+Updated some modules to be a better fit to my needs.
+
+Created a new theme based on [Jerome's theme][9], using the function to parse the pwd from [sorin theme][2]
+
 ### Troubleshooting
 
 If you are not able to find certain commands after switching to *Prezto*,
@@ -115,3 +121,4 @@ SOFTWARE.
 [6]: http://gitref.org
 [7]: http://www.bash2zsh.com/zsh_refcard/refcard.pdf
 [8]: http://grml.org/zsh/zsh-lovers.html
+[9]: http://jeromedalbert.com/migrate-from-oh-my-zsh-to-prezto/
