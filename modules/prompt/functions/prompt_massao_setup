@@ -1,0 +1,43 @@
+function prompt_massao_precmd {
+  prompt_massao_pwd
+  git-info
+}
+
+function prompt_massao_pwd {
+  local pwd="${PWD/#$HOME/~}"
+
+  if [[ "$pwd" == (#m)[/~] ]]; then
+    _prompt_massao_pwd="$MATCH"
+    unset MATCH
+  else
+    _prompt_massao_pwd="${${${${(@j:/:M)${(@s:/:)pwd}##.#?}:h}%/}//\%/%%}/${${pwd:t}//\%/%%}"
+  fi
+}
+
+function prompt_massao_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+
+  # Add hook for calling git-info before each command.
+  add-zsh-hook precmd prompt_massao_precmd
+
+  # Set git-info parameters.
+  zstyle ':prezto:module:git:info' verbose 'yes'
+  zstyle ':prezto:module:git:info:branch' format '%F{green}%b%f'
+  zstyle ':prezto:module:git:info:clean' format ' %F{green}✔%f'
+  zstyle ':prezto:module:git:info:dirty' format ' %F{red}✗%f'
+  zstyle ':prezto:module:git:info:keys' format \
+    'prompt' ' %F{green}(%f$(coalesce "%b" "%p" "%c")${git_info[rprompt]}%s%F{green})%f' \
+    'rprompt' '%C%D'
+
+  # Define prompts.
+  # PROMPT='${PWD/#$HOME/~}${(e)git_info[prompt]} %F{blue}$%f '
+  PROMPT='%F{yellow}${_prompt_massao_pwd}%f${(e)git_info[prompt]} %F{blue}$%f '
+  RPROMPT=''
+}
+
+prompt_massao_setup "$@"
