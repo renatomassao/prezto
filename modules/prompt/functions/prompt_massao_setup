@@ -35,7 +35,7 @@ function prompt_massao_setup {
     'rprompt' '%C%D'
 
   # Define prompts.
-  # PROMPT='${PWD/#$HOME/~}${(e)git_info[prompt]} %F{blue}$%f '
+  # PROMPT='%F{yellow}${PWD/#$HOME/~}%f${(e)git_info[prompt]} %F{blue}$%f '
   PROMPT='%F{yellow}${_prompt_massao_pwd}%f${(e)git_info[prompt]} %F{blue}$%f '
   RPROMPT=''
 }
