@@ -1,4 +1,26 @@
+#
+# 16 Terminal Colors
+# -- ---------------
+#  0 black
+#  1 red
+#  2 green
+#  3 yellow
+#  4 blue
+#  5 magenta
+#  6 cyan
+#  7 white
+#  8 bright black
+#  9 bright red
+# 10 bright green
+# 11 bright yellow
+# 12 bright blue
+# 13 bright magenta
+# 14 bright cyan
+# 15 bright white
+#
+
 function prompt_massao_precmd {
+  time_now=`date +%H:%M:%S`
   prompt_massao_pwd
   git-info
 }
@@ -27,17 +49,17 @@ function prompt_massao_setup {
 
   # Set git-info parameters.
   zstyle ':prezto:module:git:info' verbose 'yes'
-  zstyle ':prezto:module:git:info:branch' format '%F{green}%b%f'
-  zstyle ':prezto:module:git:info:clean' format ' %F{green}✔%f'
-  zstyle ':prezto:module:git:info:dirty' format ' %F{red}✗%f'
+  zstyle ':prezto:module:git:info:branch' format '%F{2}%b%f'
+  zstyle ':prezto:module:git:info:clean' format ' %F{2}✔%f'
+  zstyle ':prezto:module:git:info:dirty' format ' %F{1}✗%f'
   zstyle ':prezto:module:git:info:keys' format \
-    'prompt' ' %F{green}(%f$(coalesce "%b" "%p" "%c")${git_info[rprompt]}%s%F{green})%f' \
+    'prompt' ' %F{2}(%f$(coalesce "%b" "%p" "%c")${git_info[rprompt]}%s%F{2})%f' \
     'rprompt' '%C%D'
 
   # Define prompts.
-  # PROMPT='%F{yellow}${PWD/#$HOME/~}%f${(e)git_info[prompt]} %F{blue}$%f '
-  PROMPT='%F{yellow}${_prompt_massao_pwd}%f${(e)git_info[prompt]} %F{blue}$%f '
-  RPROMPT=''
+PROMPT='%F{6}%n%f%B%F{1}@%f%b%F{3}${PWD/#$HOME/~}%f${(e)git_info[prompt]}
+%F{6}[$time_now]%f %F{4}❄ %f'
+# PROMPT='%F{3}${_prompt_massao_pwd}%f${(e)git_info[prompt]} %F{4}❄ %f'
 }
 
 prompt_massao_setup "$@"
