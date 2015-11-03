@@ -30,3 +30,5 @@ bindkey "^I" expand-or-complete-with-dots
 function pys() {
 	python -m SimpleHTTPServer $1
 }
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
